@@ -5,17 +5,44 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 
-function App() {
+import { MsalProvider, useMsal, useIsAuthenticated } from "@azure/msal-react";
+import { useEffect } from "react";
+import { InteractionRequiredAuthError } from "@azure/msal-browser";
+
+function App({ msalinstance}) {
     return (
-        <PageLayout>
-            <Grid container justifyContent="center">
-                <Pages />
-            </Grid>
-        </PageLayout>
+        <MsalProvider instance={msalinstance}>
+            <PageLayout>
+                <Grid container justifyContent="center">
+                    <Pages />
+                </Grid>
+            </PageLayout>
+        </MsalProvider>
     );
 }
 
 const Pages = () => {
+    const { instance } = useMsal();
+    const IsAuthenticated = useIsAuthenticated();
+
+    useEffect(() => {
+        if (!IsAuthenticated) {
+            instance.ssoSilent({
+                scopes: ["user.read"],
+                loginHint: ""
+            }).then((response) => {
+                instance.setActiveAccount(response.account);
+
+            }).catch((error) => {
+                if (error instanceof InteractionRequiredAuthError) {
+                    instance.loginRedirect({
+                        scopes: ["user.read"],
+                    });
+                }
+            });
+        }
+    }, [])
+
     return (
         <Routes>
             <Route path="/" element={<Home />} />

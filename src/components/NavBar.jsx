@@ -8,7 +8,10 @@ import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 import { Link as RouterLink } from "react-router-dom";
 
+import { useIsAuthenticated } from "@azure/msal-react";
+
 const NavBar = () => {
+    const isauth = useIsAuthenticated();
     return (
         <div sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -16,10 +19,9 @@ const NavBar = () => {
                     <Typography sx={{ flexGrow: 1 }}>
                         <Link component={RouterLink} to="/" color="inherit" variant="h6">Microsoft identity platform</Link>
                     </Typography>
-                    <WelcomeName />
+                    {isauth ? <WelcomeName /> : null}
                     <Button component={RouterLink} to="/profile" color="inherit">Profile</Button>
-                    <SignInButton />
-                    <SignOutButton />
+                    {isauth ? <SignOutButton /> : <SignInButton />}
                 </Toolbar>
             </AppBar>
         </div>
