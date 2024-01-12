@@ -21,6 +21,8 @@ const publicclientapp = new PublicClientApplication({
     }
 });
 
+
+
 publicclientapp.addEventCallback(event => {
     if (event.eventType === EventType.LOGIN_SUCCESS) {
         console.log(event);

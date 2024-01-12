@@ -10,6 +10,9 @@ export const SignInButton = () => {
             scopes: ['user.read']
         });
     }
+
+    const key = process.env.REACT_APP_CLIENT_KEY;
+    console.log(key);
     return (
         <Button color="inherit" onClick={handlesignin}>Sign in</Button>
     )
