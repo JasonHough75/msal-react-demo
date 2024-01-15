@@ -15,8 +15,10 @@ import { PublicClientApplication, EventType } from '@azure/msal-browser';
 // create an public client application for MSAL
 const publicclientapp = new PublicClientApplication({
     auth:{
-        clientId: process.env.REACT_APP_AZURE_CLIENT_ID,
-        authority: process.env.REACT_APP_AZURE_AUTHORITY,
+        //clientId: process.env.REACT_APP_AZURE_CLIENT_ID,
+        //authority: process.env.REACT_APP_AZURE_AUTHORITY,
+        //clientId: "27f83505-6d5f-4db2-a6eb-d8dc3e0cc099",
+        //authority: "https://login.microsoftonline.com/7027dd0c-aca1-4acf-908d-766630ea25bf",
         redirectUri: '/'
     }
 });
