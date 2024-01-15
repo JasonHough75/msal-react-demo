@@ -8,6 +8,7 @@ import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 import { Link as RouterLink } from "react-router-dom";
 import { Stack } from "@mui/material";
+import sse_logo from "../logo/sse_logo.png"
 
 import { useIsAuthenticated } from "@azure/msal-react";
 //{isauth ? <WelcomeName /> : null}
@@ -17,9 +18,9 @@ const NavBar = () => {
         <div sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                
+                <img src={sse_logo} alt="logo" style={{maxHeight: "90px"}} />
                 <Button  color="inherit" >
-                    New Account
+                    <b>New Account</b>
                 </Button>
                 <Button  color="inherit">
                     Deactivate Account
