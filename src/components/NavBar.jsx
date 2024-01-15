@@ -16,9 +16,9 @@ const NavBar = () => {
         <div sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography sx={{ flexGrow: 1 }}>
-                        <Link component={RouterLink} to="/" color="inherit" variant="h6">Microsoft identity platform</Link>
-                    </Typography>
+                <Typography sx={{ flexGrow: 1 }}>
+                        
+                        </Typography>
                     {isauth ? <WelcomeName /> : null}
                     <Button component={RouterLink} to="/profile" color="inherit">Profile</Button>
                     {isauth ? <SignOutButton /> : <SignInButton />}
