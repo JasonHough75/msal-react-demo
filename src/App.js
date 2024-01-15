@@ -32,6 +32,7 @@ const Pages = () => {
                 loginHint: ""
             }).then((response) => {
                 instance.setActiveAccount(response.account);
+                
 
             }).catch((error) => {
                 if (error instanceof InteractionRequiredAuthError) {

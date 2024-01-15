@@ -8,6 +8,7 @@ export const WelcomeName = () => {
 
     useEffect(() => {
         const currentaccount = instance.getActiveAccount();
+        
 
         if (currentaccount) {
             setusername(currentaccount.username);
