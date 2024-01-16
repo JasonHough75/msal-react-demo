@@ -7,11 +7,15 @@ import { WelcomeName } from "./WelcomeName";
 import { SignInButton } from "./SignInButton";
 import { SignOutButton } from "./SignOutButton";
 import { Link as RouterLink } from "react-router-dom";
-import { Stack } from "@mui/material";
+import { Avatar, Stack } from "@mui/material";
 import sse_logo from "../logo/sse_logo.png"
 
 import { useIsAuthenticated } from "@azure/msal-react";
+import { deepOrange } from "@mui/material/colors";
 //{isauth ? <WelcomeName /> : null}
+
+
+
 const NavBar = () => {
     const isauth = useIsAuthenticated();
     return (
@@ -19,16 +23,16 @@ const NavBar = () => {
             <AppBar position="static">
                 <Toolbar>
                 <img src={sse_logo} alt="logo" style={{maxHeight: "90px"}} />
-                <Button  color="inherit" >
-                    <b>New Account</b>
+                <Button  color="secondary">
+                    New Account
                 </Button>
-                <Button  color="inherit">
+                <Button  color="secondary">
                     Deactivate Account
                 </Button>
-                <Button  color="inherit">
+                <Button  color="secondary">
                     Adjust Debt
                 </Button>
-                <Button  color="inherit">
+                <Button  color="secondary">
                     Override top-up
                 </Button>
                 
@@ -38,6 +42,7 @@ const NavBar = () => {
                     
                     <Button component={RouterLink} to="/profile" color="inherit">Profile</Button>
                     {isauth ? <SignOutButton /> : <SignInButton />}
+                    {isauth ?<Avatar sx={{ bgcolor: deepOrange[500]}}>B</Avatar> : null}
                 </Toolbar>
             </AppBar>
         </div>
